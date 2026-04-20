@@ -53,9 +53,48 @@
             overflow: hidden;
         }
 
-        /* Section 1 - Hero */
+        /* Section 1 - Hero (Main Page) */
         #section1 {
             background: linear-gradient(135deg, #0a0a0a 0%, #1a0a1a 100%);
+            position: relative;
+        }
+        
+        #section1::before {
+            content: '';
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(57, 255, 20, 0.25) 0%, transparent 70%);
+            top: -300px;
+            right: -300px;
+            border-radius: 50%;
+            animation: floatOrb1 20s ease-in-out infinite;
+            filter: blur(80px);
+        }
+        
+        #section1::after {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(180, 0, 255, 0.25) 0%, transparent 70%);
+            bottom: -200px;
+            left: -200px;
+            border-radius: 50%;
+            animation: floatOrb2 25s ease-in-out infinite;
+            filter: blur(80px);
+        }
+        
+        @keyframes floatOrb1 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(-150px, 150px) scale(1.2); }
+            66% { transform: translate(100px, -100px) scale(0.8); }
+        }
+        
+        @keyframes floatOrb2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(150px, -150px) scale(1.3); }
+            66% { transform: translate(-100px, 100px) scale(0.9); }
         }
 
         .hero-bg {
@@ -152,9 +191,53 @@
             100% { transform: translateX(100%) rotate(45deg); }
         }
 
-        /* Section 2 - Technology */
+        /* Section 2 - Technology (Grid Pattern) */
         #section2 {
-            background: linear-gradient(135deg, #1a0a1a 0%, #0a1a0a 100%);
+            background-color: #050505;
+            background-image: 
+                linear-gradient(rgba(57, 255, 20, 0.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(57, 255, 20, 0.06) 1px, transparent 1px),
+                linear-gradient(rgba(180, 0, 255, 0.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(180, 0, 255, 0.06) 1px, transparent 1px);
+            background-size: 60px 60px, 60px 60px, 30px 30px, 30px 30px;
+            background-position: 0 0, 0 0, 15px 15px, 15px 15px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #section2::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 40%, rgba(180, 0, 255, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 60%, rgba(57, 255, 20, 0.1) 0%, transparent 50%);
+            animation: pulseGrid 10s ease-in-out infinite;
+        }
+        
+        #section2::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(57, 255, 20, 0.2) 0%, transparent 70%);
+            top: 10%;
+            left: -100px;
+            border-radius: 50%;
+            animation: techFloat1 18s ease-in-out infinite;
+            filter: blur(60px);
+        }
+        
+        @keyframes pulseGrid {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.05); }
+        }
+        
+        @keyframes techFloat1 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(200px, 100px) scale(1.3); }
         }
 
         .tech-grid {
@@ -216,9 +299,71 @@
             100% { width: 300px; height: 300px; opacity: 0; }
         }
 
-        /* Section 3 - Innovation */
+        /* Section 3 - Innovation (Animated Waves) */
         #section3 {
-            background: linear-gradient(135deg, #0a1a0a 0%, #0a0a1a 100%);
+            background: linear-gradient(180deg, #0f0518 0%, #050f0a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .wave-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 200%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120'%3E%3Cpath d='M0,60 C300,120 400,0 600,60 C800,120 900,0 1200,60 L1200,120 L0,120 Z' fill='%2339ff14' fill-opacity='0.08'/%3E%3C/svg%3E");
+            background-size: 50% 100%;
+            animation: waveMove 10s linear infinite;
+        }
+        
+        .wave:nth-child(2) {
+            bottom: 15px;
+            opacity: 0.6;
+            animation: waveMove 15s linear infinite reverse;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120'%3E%3Cpath d='M0,60 C300,120 400,0 600,60 C800,120 900,0 1200,60 L1200,120 L0,120 Z' fill='%23b400ff' fill-opacity='0.1'/%3E%3C/svg%3E");
+            background-size: 50% 100%;
+        }
+        
+        .wave:nth-child(3) {
+            bottom: 30px;
+            opacity: 0.4;
+            animation: waveMove 20s linear infinite;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120'%3E%3Cpath d='M0,60 C300,120 400,0 600,60 C800,120 900,0 1200,60 L1200,120 L0,120 Z' fill='%2339ff14' fill-opacity='0.12'/%3E%3C/svg%3E");
+            background-size: 50% 100%;
+        }
+        
+        @keyframes waveMove {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        
+        #section3::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(180, 0, 255, 0.2) 0%, transparent 70%);
+            top: -150px;
+            left: 50%;
+            border-radius: 50%;
+            animation: innovateFloat 22s ease-in-out infinite;
+            filter: blur(70px);
+        }
+        
+        @keyframes innovateFloat {
+            0%, 100% { transform: translate(-50%, 0) scale(1); }
+            50% { transform: translate(-30%, 100px) scale(1.2); }
         }
 
         .innovation-container {
@@ -282,9 +427,78 @@
             75% { border-radius: 30% 70% 70% 30% / 70% 30% 30% 70%; }
         }
 
-        /* Section 4 - Contact */
+        /* Section 4 - Contact (Neural Network) */
         #section4 {
-            background: linear-gradient(135deg, #0a0a1a 0%, #1a0a1a 100%);
+            background: radial-gradient(circle at center, #1a0a2e 0%, #050510 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .neural-network {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .neural-node {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #b400ff;
+            border-radius: 50%;
+            box-shadow: 0 0 25px #b400ff, 0 0 50px rgba(180, 0, 255, 0.5);
+            animation: nodePulse 4s ease-in-out infinite;
+        }
+        
+        .neural-node:nth-child(even) {
+            background: #39ff14;
+            box-shadow: 0 0 25px #39ff14, 0 0 50px rgba(57, 255, 20, 0.5);
+            animation-delay: 2s;
+        }
+        
+        .neural-node:nth-child(3n) {
+            width: 6px;
+            height: 6px;
+            animation-delay: 1s;
+        }
+        
+        @keyframes nodePulse {
+            0%, 100% { transform: scale(1); opacity: 0.4; }
+            50% { transform: scale(1.8); opacity: 1; }
+        }
+        
+        .neural-line {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(180, 0, 255, 0.3), transparent);
+            transform-origin: left center;
+            animation: lineGlow 5s ease-in-out infinite;
+        }
+        
+        @keyframes lineGlow {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.6; }
+        }
+        
+        #section4::before {
+            content: '';
+            position: absolute;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(57, 255, 20, 0.15) 0%, transparent 70%);
+            bottom: -300px;
+            right: -200px;
+            border-radius: 50%;
+            animation: contactFloat 28s ease-in-out infinite;
+            filter: blur(90px);
+        }
+        
+        @keyframes contactFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-150px, -100px) scale(1.15); }
         }
 
         .contact-wrapper {
@@ -606,6 +820,11 @@
     <!-- Section 3: Innovation -->
     <section id="section3" class="section">
         <div class="particles" id="particles3"></div>
+        <div class="wave-container">
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+        </div>
         <div class="innovation-container">
             <div class="innovation-box">
                 <div class="liquid-shape"></div>
@@ -619,6 +838,7 @@
     <!-- Section 4: Contact -->
     <section id="section4" class="section">
         <div class="particles" id="particles4"></div>
+        <div class="neural-network" id="neuralNetwork"></div>
         <div class="contact-wrapper">
             <div class="contact-panel">
                 <div class="inner-panel"></div>
@@ -712,6 +932,55 @@
         createParticles('particles2', 40, '#b400ff');
         createParticles('particles3', 35, '#39ff14');
         createParticles('particles4', 25, '#b400ff');
+        
+        // Create Neural Network for Section 4
+        function createNeuralNetwork() {
+            const container = document.getElementById('neuralNetwork');
+            if (!container) return;
+            
+            const nodeCount = 20;
+            const nodes = [];
+            
+            // Create nodes
+            for (let i = 0; i < nodeCount; i++) {
+                const node = document.createElement('div');
+                node.className = 'neural-node';
+                node.style.left = Math.random() * 100 + '%';
+                node.style.top = Math.random() * 100 + '%';
+                node.style.animationDelay = Math.random() * 4 + 's';
+                container.appendChild(node);
+                nodes.push({
+                    element: node,
+                    x: parseFloat(node.style.left),
+                    y: parseFloat(node.style.top)
+                });
+            }
+            
+            // Create lines between nearby nodes
+            for (let i = 0; i < nodes.length; i++) {
+                for (let j = i + 1; j < nodes.length; j++) {
+                    const dx = nodes[j].x - nodes[i].x;
+                    const dy = nodes[j].y - nodes[i].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < 30) {
+                        const line = document.createElement('div');
+                        line.className = 'neural-line';
+                        const length = Math.sqrt(dx * dx + dy * dy) * 10;
+                        const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+                        
+                        line.style.width = length + 'px';
+                        line.style.left = nodes[i].x + '%';
+                        line.style.top = nodes[i].y + '%';
+                        line.style.transform = `rotate(${angle}deg)`;
+                        line.style.animationDelay = Math.random() * 5 + 's';
+                        container.appendChild(line);
+                    }
+                }
+            }
+        }
+        
+        createNeuralNetwork();
 
         // Intersection Observer for animations
         const observerOptions = {
